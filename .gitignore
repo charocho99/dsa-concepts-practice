@@ -1,0 +1,24 @@
+#ignore everything by default
+*
+#allow directory traversal
+!*/
+#allow only c/c++/java/python source files
+#c/cpp
+!*.c
+!*.cpp
+!*.h
+!*.cxx
+!*.cc
+!*.hpp
+!*.hxx
+!*.hh
+!*.h++
+
+#java
+!*.java
+
+#python
+!*.py
+
+#allow gitignore itself
+!.gitignore
