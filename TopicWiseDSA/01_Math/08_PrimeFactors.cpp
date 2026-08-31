@@ -25,7 +25,7 @@ void primeFactors(int n){
             n=n/(i+2);
         }
     }
-    cout<<n;
+    if(n>3) cout<<n;
 }
 
 int main(){
