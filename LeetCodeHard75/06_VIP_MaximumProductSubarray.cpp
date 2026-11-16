@@ -19,8 +19,31 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// Approach 1: Dynamic Programming : Kadane's Algorithm
 int maxProductSubArr(vector<int>& nums){
-    
+    int res = nums[0];
+    int curMin = 1, curMax = 1;
+
+    for (int num : nums) {
+        int tmp = curMax * num;
+        curMax = max(max(num * curMax, num * curMin), num);
+        curMin = min(min(tmp, num * curMin), num);
+        res = max(res, curMax);
+    }
+    return res;
+}
+
+// Approach 2: Prefix and Suffix Product
+int maxProduct(vector<int>& nums) {
+    int n = nums.size(), res = nums[0];
+    int prefix = 0, suffix = 0;
+
+    for (int i = 0; i < n; i++) {
+        prefix = nums[i] * (prefix == 0 ? 1 : prefix);
+        suffix = nums[n - 1 - i] * (suffix == 0 ? 1 : suffix);
+        res = max(res, max(prefix, suffix));
+    }
+    return res;
 }
 
 int main(){
@@ -38,3 +61,6 @@ int main(){
     cout<<maxProductSubArr(nums)<<endl;
     return 0;
 }
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
